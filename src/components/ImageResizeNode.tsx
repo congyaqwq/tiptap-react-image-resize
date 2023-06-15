@@ -5,7 +5,7 @@ import { useElementSize } from '../hooks/use-element-size';
 import { ImageSizeExtensionOptions } from '../ImageSizeExtension';
 import styled from 'styled-components'
 
-const StyledImageWrapper = styled('div')<{scrollbarWidth: string}>`
+const StyledImageWrapper = styled('div')<{barwidth: string}>`
   boxSizing: content-box;
   resize: horizontal;
   overflow: scroll;
@@ -40,7 +40,7 @@ export const AutoSizeImage = (props: any) => {
   return (
     <NodeViewWrapper style={{ display: options.inline? 'inline-block': 'block' }}>
       <StyledImageWrapper
-        scrollbarWidth={SCROLLBAR_WIDTH}
+        barwidth={SCROLLBAR_WIDTH}
         style={{
             maxWidth: options.maxWidth,
           minWidth: options.minWidth,
