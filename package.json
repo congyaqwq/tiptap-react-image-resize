@@ -4,7 +4,7 @@
   "description": "react image resize extension for tiptap",
   "main": "src/index.ts",
   "repository": {
-    "url": ""
+    "url": "https://github.com/congyaqwq/tiptap-react-image-resize"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

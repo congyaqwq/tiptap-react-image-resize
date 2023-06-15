@@ -17,10 +17,8 @@ const StyledImageWrapper = styled('div')<{scrollbarWidth: string}>`
 
 
 export const AutoSizeImage = (props: any) => {
-  console.log(props,11)
   const imageProps = props.node.attrs;
   const options = props.extension.options as ImageSizeExtensionOptions;
-  const imageOptions = props.extension.parent.parent.options
   const SCROLLBAR_WIDTH = options.scrollbarWidth;
 
   const originSize = useRef({
@@ -40,7 +38,7 @@ export const AutoSizeImage = (props: any) => {
   }, [width, height]);
 
   return (
-    <NodeViewWrapper style={{ display: imageOptions.inline? 'inline-block': 'block' }}>
+    <NodeViewWrapper style={{ display: options.inline? 'inline-block': 'block' }}>
       <StyledImageWrapper
         scrollbarWidth={SCROLLBAR_WIDTH}
         style={{
