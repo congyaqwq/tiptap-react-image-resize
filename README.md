@@ -27,4 +27,4 @@ export const EditorDemo = () => {
 
 ## online demo
 
-// processing
+[online demo by vercel](https://tiptap-react-image-resize-fzzs.vercel.app/?path=/story/example-editordemo--demo)
