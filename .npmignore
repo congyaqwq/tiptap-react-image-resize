@@ -4,3 +4,7 @@ node_modules
 pnpm-lock.json
 tsconfig.json
 CHANGELOG.md
+stories
+.storybook
+.log
+dist
