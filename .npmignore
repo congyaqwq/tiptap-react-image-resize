@@ -6,5 +6,5 @@ tsconfig.json
 CHANGELOG.md
 stories
 .storybook
-.log
+*.log
 dist
