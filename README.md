@@ -2,7 +2,8 @@
 
 ## description
 
-it's a npm package for tiptap-react extension
+it's a npm package for tiptap-react extension  
+resized by css default property `resize: both`  
 
 ## usage
 
@@ -28,3 +29,8 @@ export const EditorDemo = () => {
 ## online demo
 
 [online demo by vercel](https://tiptap-react-image-resize-fzzs.vercel.app/?path=/story/example-editordemo--demo)
+
+
+## others 
+if it's helpful for you, please give me a star !   
+because I don't hava a project more than 10 star yet (:  
