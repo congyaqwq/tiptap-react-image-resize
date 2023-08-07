@@ -4,6 +4,7 @@ import Image from '@tiptap/extension-image'
 import Document from '@tiptap/extension-document'
 import Text from '@tiptap/extension-text'
 import { ImageSizeExtension } from '../ImageSizeExtension'
+import { Analytics } from '@vercel/analytics/react';
 
 
 export const EditorDemo = () => {
@@ -18,6 +19,7 @@ export const EditorDemo = () => {
   })
   return (
     <div>
+      <Analytics />
       <EditorContent editor={editor} />
     </div>
   )
