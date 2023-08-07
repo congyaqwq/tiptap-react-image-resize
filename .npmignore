@@ -8,3 +8,5 @@ stories
 .storybook
 *.log
 dist
+yarn.lock
+yarn-error.log
