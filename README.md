@@ -1,5 +1,10 @@
 # tiptap-react-image-resize
 
+## install
+```
+npm i tiptap-react-image-resize
+```
+
 ## description
 
 it's a npm package for tiptap-react extension  
