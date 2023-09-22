@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ImageSizeExtensionOptions } from '../ImageSizeExtension';
 import { IconMove } from './IconMove';
 import { IconResize } from './IconResize';
+import { Loader } from './Loader';
 import './main.css';
 
 const covertPxToNum = (value: string | number) => {
@@ -21,6 +22,7 @@ export const AutoSizeImage = (props: any) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
+  const [isLoad, setIsLoad] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [imageWidth, setImageWidth] = useState(imageProps.width)
 
@@ -30,8 +32,8 @@ export const AutoSizeImage = (props: any) => {
       const { width, height } = contentRect
       props.updateAttributes({ width: `${width}px`, height: `${height}px` });
     });
-    observer.observe(ref.current!);
-  }, [])
+    isLoad && observer.observe(ref.current!);
+  }, [isLoad])
 
   useEffect(() => {
     const onMouseMove = (e) => {
@@ -52,14 +54,30 @@ export const AutoSizeImage = (props: any) => {
     }
   }, [isActive, props.selected])
 
+  useEffect(() => {
+    const preloadImage = (src) => {
+      let img = new Image();
+      img.src = src;
+      img.onload = () => {
+        setIsLoad(true)
+      }
+    }
+    preloadImage(imageProps.src)
+  }, [])
+
   return (
     <NodeViewWrapper style={{ display: options.inline ? 'inline-block' : 'block', width: 'min-content', position: 'relative', zIndex: 10 }}>
-      <div
+      {!isLoad && <Loader width={options.maxWidth} />}
+      {isLoad && <div
         ref={ref}
         style={{
           outline: props.selected ? `2px solid ${options.activeBorderColor}` : 'none',
+
         }}>
-        <img width={imageWidth} src={imageProps.src} />
+        <img style={{
+          maxWidth: options.maxWidth,
+          minWidth: options.minWidth,
+        }} width={imageWidth} src={imageProps.src} />
         {props.selected && <div style={{ position: 'absolute', right: 0, bottom: 0, display: 'flex' }}>
           {options.levels.map((level, index) =>
             <div key={level} title={`${level} px`} className='image-resize-plugin-icon' onClick={() => setImageWidth(level)}><IconResize size={iconSizes[index]} /></div>
@@ -69,7 +87,7 @@ export const AutoSizeImage = (props: any) => {
             <IconMove />
           </div>
         </div>}
-      </div>
+      </div>}
     </NodeViewWrapper>
   );
 };

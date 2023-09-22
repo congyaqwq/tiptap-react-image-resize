@@ -22,11 +22,15 @@ export const inputRegex =
   /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/;
 
 export interface ImageSizeExtensionOptions {
-  defaultSize: string | number;
+  // image min width
   minWidth: string | number;
+  // image max width & loader default width
   maxWidth: string | number;
+  // border color when selected
   activeBorderColor: string;
+  // image size level, default set to [300, 600, 900]
   levels: [number, number, number];
+  // display `inline-block` or `block`, default to false
   inline: boolean;
   allowBase64: boolean;
   HTMLAttributes: Record<string, any>;
@@ -35,8 +39,6 @@ export interface ImageSizeExtensionOptions {
 export const ImageSizeExtension = Image.extend<ImageSizeExtensionOptions>({
   addOptions() {
     return {
-      // new image default width
-      defaultSize: "800px",
       minWidth: "200px",
       maxWidth: "800px",
       activeBorderColor: "green",

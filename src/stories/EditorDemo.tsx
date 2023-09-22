@@ -1,16 +1,15 @@
-import React from 'react'
-import { EditorContent, useEditor } from "@tiptap/react"
-import Image from '@tiptap/extension-image'
 import Document from '@tiptap/extension-document'
 import Text from '@tiptap/extension-text'
+import { EditorContent, useEditor } from "@tiptap/react"
+import { Analytics } from '@vercel/analytics/react'
+import React from 'react'
 import { ImageSizeExtension } from '../ImageSizeExtension'
-import { Analytics } from '@vercel/analytics/react';
 
 
 export const EditorDemo = () => {
   const editor = useEditor({
     extensions: [ Document, Text, ImageSizeExtension.configure( {
-      maxWidth: "1000px"
+      maxWidth: "600px"
     }) ],
     content: `
         <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />
