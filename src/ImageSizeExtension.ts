@@ -1,45 +1,50 @@
-import {mergeAttributes, nodeInputRule } from '@tiptap/core'
-import Image from '@tiptap/extension-image';
-import { ReactNodeViewRenderer } from '@tiptap/react';
-import { AutoSizeImage } from './components/ImageResizeNode';
+import { mergeAttributes, nodeInputRule } from "@tiptap/core";
+import Image from "@tiptap/extension-image";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import { AutoSizeImage } from "./components/ImageResizeNode";
 
-declare module '@tiptap/core' {
+declare module "@tiptap/core" {
   interface Commands<ReturnType> {
     image: {
       /**
        * Add an image
        */
-      setImage: (options: { src: string, alt?: string, title?: string }) => ReturnType,
-    }
+      setImage: (options: {
+        src: string;
+        alt?: string;
+        title?: string;
+      }) => ReturnType;
+    };
   }
 }
 
-export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
+export const inputRegex =
+  /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/;
 
 export interface ImageSizeExtensionOptions {
-  defaultSize: string;
-  minWidth: string;
-  maxWidth: string;
-  scrollbarWidth: string; 
+  defaultSize: string | number;
+  minWidth: string | number;
+  maxWidth: string | number;
   activeBorderColor: string;
-  inline: boolean,
-  allowBase64: boolean,
-  HTMLAttributes: Record<string, any>,
+  levels: [number, number, number];
+  inline: boolean;
+  allowBase64: boolean;
+  HTMLAttributes: Record<string, any>;
 }
 
 export const ImageSizeExtension = Image.extend<ImageSizeExtensionOptions>({
   addOptions() {
     return {
       // new image default width
-      defaultSize: '800px',
-      minWidth: '100px',
-      maxWidth: '800px',
-      scrollbarWidth: '10px',
-      activeBorderColor: 'gray',
+      defaultSize: "800px",
+      minWidth: "200px",
+      maxWidth: "800px",
+      activeBorderColor: "green",
+      levels: [300, 600, 900],
       inline: false,
       allowBase64: false,
       HTMLAttributes: {},
-    }
+    };
   },
   addNodeView() {
     return ReactNodeViewRenderer(AutoSizeImage);
@@ -66,30 +71,35 @@ export const ImageSizeExtension = Image.extend<ImageSizeExtensionOptions>({
       },
     };
   },
-  
+
   parseHTML() {
     return [
       {
         tag: this.options.allowBase64
-          ? 'img[src]'
+          ? "img[src]"
           : 'img[src]:not([src^="data:"])',
       },
-    ]
+    ];
   },
 
   renderHTML({ HTMLAttributes }) {
-    return ['img', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)]
+    return [
+      "img",
+      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
+    ];
   },
 
   addCommands() {
     return {
-      setImage: options => ({ commands }) => {
-        return commands.insertContent({
-          type: this.name,
-          attrs: options,
-        })
-      },
-    }
+      setImage:
+        (options) =>
+        ({ commands }) => {
+          return commands.insertContent({
+            type: this.name,
+            attrs: options,
+          });
+        },
+    };
   },
 
   addInputRules() {
@@ -97,12 +107,12 @@ export const ImageSizeExtension = Image.extend<ImageSizeExtensionOptions>({
       nodeInputRule({
         find: inputRegex,
         type: this.type,
-        getAttributes: match => {
-          const [,, alt, src, title] = match
+        getAttributes: (match) => {
+          const [, , alt, src, title] = match;
 
-          return { src, alt, title }
+          return { src, alt, title };
         },
       }),
-    ]
+    ];
   },
 });

@@ -10,7 +10,7 @@ import { Analytics } from '@vercel/analytics/react';
 export const EditorDemo = () => {
   const editor = useEditor({
     extensions: [ Document, Text, ImageSizeExtension.configure( {
-      maxWidth: "800px"
+      maxWidth: "1000px"
     }) ],
     content: `
         <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />

@@ -1,6 +1,6 @@
 {
   "name": "tiptap-react-image-resize",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "react image resize extension for tiptap",
   "main": "src/index.ts",
   "repository": {
@@ -30,8 +30,7 @@
     "@tiptap/react": "^2.0.0-beta.109",
     "@vercel/analytics": "^1.0.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^6.0.0-rc.3"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.20",
