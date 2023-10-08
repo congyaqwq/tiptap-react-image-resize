@@ -29,7 +29,7 @@ export interface ImageSizeExtensionOptions {
   // border color when selected
   activeBorderColor: string;
   // image size level, default set to [300, 600, 900]
-  levels: [number, number, number];
+  levels: [number, number, number] | [number, number];
   // display `inline-block` or `block`, default to false
   inline: boolean;
   allowBase64: boolean;
@@ -40,7 +40,7 @@ export const ImageSizeExtension = Image.extend<ImageSizeExtensionOptions>({
   addOptions() {
     return {
       minWidth: "200px",
-      maxWidth: "800px",
+      maxWidth: "1000px",
       activeBorderColor: "green",
       levels: [300, 600, 900],
       inline: false,

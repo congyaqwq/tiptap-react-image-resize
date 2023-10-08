@@ -1,6 +1,6 @@
 
 import { NodeViewWrapper } from '@tiptap/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ImageSizeExtensionOptions } from '../ImageSizeExtension';
 import { IconMove } from './IconMove';
 import { IconResize } from './IconResize';
@@ -26,6 +26,16 @@ export const AutoSizeImage = (props: any) => {
   const [isActive, setIsActive] = useState(false)
   const [imageWidth, setImageWidth] = useState(imageProps.width)
 
+  const getValidWidth = useCallback(
+    (_width: string | number) => {
+      const width = covertPxToNum(_width);
+      if (width < covertPxToNum(options.minWidth)) return covertPxToNum(options.minWidth);
+      if (width > covertPxToNum(options.maxWidth)) return covertPxToNum(options.maxWidth);
+      return covertPxToNum(_width);
+    },
+    [options.maxWidth, options.minWidth]
+  );
+
   useEffect(() => {
     let observer = new ResizeObserver(function (mutations) {
       const { contentRect } = mutations[0]
@@ -38,9 +48,8 @@ export const AutoSizeImage = (props: any) => {
   useEffect(() => {
     const onMouseMove = (e) => {
       if (isActive && props.selected) {
-        if (e.pageX < covertPxToNum(options.minWidth)) return
-        if (e.pageX > covertPxToNum(options.maxWidth)) return
-        setImageWidth(e.pageX)
+        const width = getValidWidth(e.pageX - (ref?.current?.getBoundingClientRect().left || 0));
+        setImageWidth(width);
       }
     }
     const onMouseUp = () => {
@@ -72,7 +81,7 @@ export const AutoSizeImage = (props: any) => {
         ref={ref}
         style={{
           outline: props.selected ? `2px solid ${options.activeBorderColor}` : 'none',
-
+          width: 'max-content'
         }}>
         <img style={{
           maxWidth: options.maxWidth,

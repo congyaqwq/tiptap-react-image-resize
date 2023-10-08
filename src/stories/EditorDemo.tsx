@@ -9,7 +9,7 @@ import { ImageSizeExtension } from '../ImageSizeExtension'
 export const EditorDemo = () => {
   const editor = useEditor({
     extensions: [ Document, Text, ImageSizeExtension.configure( {
-      maxWidth: "600px"
+      // maxWidth: "600px"
     }) ],
     content: `
         <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />
