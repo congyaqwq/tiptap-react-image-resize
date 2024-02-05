@@ -75,7 +75,7 @@ export const AutoSizeImage = (props: any) => {
   }, [])
 
   return (
-    <NodeViewWrapper style={{ display: options.inline ? 'inline-block' : 'block', width: 'min-content', position: 'relative', zIndex: 10 }}>
+    <NodeViewWrapper data-drag-handle style={{ display: options.inline ? 'inline-block' : 'block', width: 'min-content', position: 'relative', zIndex: 10 }}>
       {!isLoad && <Loader width={options.maxWidth} />}
       {isLoad && <div
         ref={ref}
