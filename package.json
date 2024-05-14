@@ -1,6 +1,6 @@
 {
   "name": "tiptap-react-image-resize",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "react image resize extension for tiptap",
   "main": "src/index.ts",
   "repository": {
