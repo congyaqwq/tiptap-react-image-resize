@@ -13,7 +13,7 @@
 ## description
 
 it's a npm package for tiptap-react extension  
-resized by css default property `resize: both`
+resized by `onMouseDown` and `onMouseMove` event
 
 ## usage
 
