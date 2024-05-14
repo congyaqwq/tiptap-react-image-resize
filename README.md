@@ -53,7 +53,7 @@ export interface ImageSizeExtensionOptions {
   // image size level, default set to [300, 600, 900]
   levels: [number, number, number] | [number, number];
   // display `inline-block` or `block`, default to false
-  inline: boolean;
+  display: 'inline-block' | 'block';
   allowBase64: boolean;
   HTMLAttributes: Record<string, any>;
 }
