@@ -13,3 +13,15 @@
   justify-content: center;
 
 }
+
+.image-resize-node-container {
+  width: max-content;
+}
+
+.image-resize-node-container:has([data-display="inline-block"]) {
+  display: inline-block;
+}
+
+.image-resize-node-container:has([data-display="block"]) {
+  display: block;
+}

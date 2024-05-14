@@ -1,7 +1,7 @@
 
 import { NodeViewWrapper } from '@tiptap/react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ImageSizeExtensionOptions } from '../ImageSizeExtension';
+import { IMAGE_RESIZE_NODE_CLASSNAME, ImageSizeExtensionOptions } from '../ImageSizeExtension';
 import { IconMove } from './IconMove';
 import { IconResize } from './IconResize';
 import { Loader } from './Loader';
@@ -75,7 +75,7 @@ export const AutoSizeImage = (props: any) => {
   }, [])
 
   return (
-    <NodeViewWrapper data-drag-handle style={{ display: options.inline ? 'inline-block' : 'block', width: 'min-content', position: 'relative', zIndex: 10 }}>
+    <NodeViewWrapper data-display={options.display} style={{ display: options.display === 'inline-block' ? 'inline-block' : 'block', width: 'min-content', position: 'relative', zIndex: 10 }}>
       {!isLoad && <Loader width={options.maxWidth} />}
       {isLoad && <div
         ref={ref}
@@ -83,7 +83,8 @@ export const AutoSizeImage = (props: any) => {
           outline: props.selected ? `2px solid ${options.activeBorderColor}` : 'none',
           width: 'max-content'
         }}>
-        <img style={{
+        <img data-drag-handle style={{
+          verticalAlign: 'middle',
           maxWidth: options.maxWidth,
           minWidth: options.minWidth,
         }} width={imageWidth} src={imageProps.src} />
@@ -92,7 +93,11 @@ export const AutoSizeImage = (props: any) => {
             <div key={level} title={`${level} px`} className='image-resize-plugin-icon' onClick={() => setImageWidth(level)}><IconResize size={iconSizes[index]} /></div>
           )}
           <div title='max' className='image-resize-plugin-icon' onClick={() => setImageWidth(options.maxWidth)}><IconResize size={24} /></div>
-          <div title='move' className='image-resize-plugin-icon' onMouseDown={() => setIsActive(true)} style={{ cursor: 'move' }} >
+          <div title='move' className='image-resize-plugin-icon' onMouseDown={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            setIsActive(true)
+          }} style={{ cursor: 'move' }} >
             <IconMove />
           </div>
         </div>}
