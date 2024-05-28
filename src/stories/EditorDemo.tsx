@@ -15,7 +15,7 @@ export const EditorDemo = () => {
     })],
     content: `
         <img src="https://w.wallhaven.cc/full/zy/wallhaven-zyj8gw.jpg" />
-        <img src="https://w.wallhaven.cc/full/zy/wallhaven-zyj8gw.jpg" />
+        <img src="https://w.wallhaven.cc/full/j8/wallhaven-j8d63q.jpg" />
       `,
   })
   return (
