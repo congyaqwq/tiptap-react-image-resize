@@ -14,14 +14,19 @@ export const EditorDemo = () => {
       display: 'block'
     })],
     content: `
-        <img src="https://source.unsplash.com/8xznAGy4HcY/800x400" />
-        <img src="https://source.unsplash.com/K9QHL52rE2k/800x400" />
+        <img src="https://w.wallhaven.cc/full/zy/wallhaven-zyj8gw.jpg" />
+        <img src="https://w.wallhaven.cc/full/zy/wallhaven-zyj8gw.jpg" />
       `,
   })
   return (
     <div>
+      <h1>
+        <a href='https://wallhaven.cc/'>image from https://wallhaven.cc</a>
+      </h1>
       <Analytics />
+      <div style={{border: '1px solid gray'}}>
       <EditorContent editor={editor} />
+      </div>
     </div>
   )
 }
